@@ -1,0 +1,52 @@
+{
+  "name": "react-native-map-navigation",
+  "version": "0.0.1",
+  "description": "Enables navigation for react-native-maps",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/grantbriston/react-native-map-navigation.git"
+  },
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "react-native-maps",
+    "maps",
+    "navigation",
+    "gps",
+    "ios",
+    "android",
+    "react-component"
+  ],
+  "author": "Grant Briston <grantbriston@gmail.com> (https://www.linkedin.com/in/grantbriston)",
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/grantbriston/react-native-map-navigation/blob/master/LICENSE"
+  },
+  "bugs": {
+    "url": "https://github.com/grantbriston/react-native-map-navigation/issues"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "homepage": "https://github.com/flyandi/react-native-map-navigation#readme",
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*",
+    "react-native-maps": ">=0.21.0"
+  },
+  "dependencies": {
+    "geolib": "^3.0.2",
+    "prop-types": "^15.6.2",
+    "react-native-optiongroup": "^0.0.7"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts"
+    ]
+  }
+}

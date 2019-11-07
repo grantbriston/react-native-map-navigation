@@ -53,8 +53,6 @@ export default class MapViewNavigation extends Component {
         routeStepCenterTolerance: PropTypes.number,
         routeStepCourseTolerance: PropTypes.number,
         displayDebugMarkers: PropTypes.bool,
-        simulate: PropTypes.bool,
-        options: PropTypes.object
     }
 
     /**
@@ -84,8 +82,6 @@ export default class MapViewNavigation extends Component {
         routeStepCenterTolerance: 0.1,
         routeStepCourseTolerance: 30, // in degress
         displayDebugMarkers: false,
-        simulate: false,
-        options: {}
     }
 
     /**
@@ -103,7 +99,7 @@ export default class MapViewNavigation extends Component {
             language: this.props.language
         });
 
-
+        this.simulator = new Simulator(this);
 
         this.traps = new Traps(this);
 
@@ -295,12 +291,7 @@ export default class MapViewNavigation extends Component {
      */
     clearRoute()
     {
-        return this.setState({
-            navigationMode: NavigationModes.IDLE,
-            stepIndex: false,
-            step: false,
-            route: false,
-        });
+        this.setState({route: false, step: false, stepIndex: false})
     }
 
     /**
@@ -309,21 +300,21 @@ export default class MapViewNavigation extends Component {
      * @param destination
      * @param navigationMode
      */
-    updateRoute(origin = false, destination = false, navigationMode = false, options = null)
+    updateRoute(origin = false, destination = false, navigationMode = false)
     {
         origin = origin || this.props.origin;
         destination = destination || this.props.destination;
         navigationMode = navigationMode || this.props.navigationMode;
-        options = options || this.props.options
 
         switch(navigationMode) {
 
             case NavigationModes.ROUTE:
-                this.displayRoute(origin, destination, options);
+                console.log('*** ROUTE', origin, destination);
+                this.displayRoute(origin, destination);
                 break;
 
             case NavigationModes.NAVIGATION:
-                this.navigateRoute(origin, destination, options);
+                this.navigateRoute(origin, destination);
                 break;
         }
     }
@@ -341,8 +332,9 @@ export default class MapViewNavigation extends Component {
         if(testForRoute && this.state.route) {
             return Promise.resolve(this.state.route);
         }
+
         options = Object.assign({}, {mode: this.state.travelMode}, {mode: this.props.travelMode}, options.constructor == Object ? options : {});
-        
+
         return this.directionsCoder.fetch(origin, destination, options).then(routes => {
 
             if(routes.length) {
@@ -388,7 +380,7 @@ export default class MapViewNavigation extends Component {
             }
 
             return Promise.resolve(route);
-        }).catch((err) => console.log(err));
+        });
     }
 
     /**
@@ -421,14 +413,9 @@ export default class MapViewNavigation extends Component {
 
             this.props.onNavigationStarted && this.props.onNavigationStarted();
 
-            if (this.props.simulate) {
-                console.log("SIMULATING ROUTE")
-                this.simulator = new Simulator(this);
+            if(this.props.simulate){
                 setTimeout(() => this.simulator.start(route), this.props.animationDuration * 1.5);
-            } else {
-                console.log("NOT SIMULATING")
             }
-
             return Promise.resolve(route);
         });
     }

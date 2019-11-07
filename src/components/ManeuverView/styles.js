@@ -15,9 +15,9 @@ export default props => StyleSheet.create({
      */
     maneuverView: {
         padding: 15,
-        backgroundColor: props.backgroundColor ,
+        backgroundColor: '#f7f7f4',
         flexDirection: 'row',
-        minHeight:  120,
+        minHeight: 120,
         alignItems: 'center',
     },
 
@@ -37,6 +37,6 @@ export default props => StyleSheet.create({
         width: 30,
         justifyContent: 'flex-end',
         alignItems: 'flex-end',
-    },
-    
+    }
+
 });

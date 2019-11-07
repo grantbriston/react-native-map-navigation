@@ -1,7 +1,7 @@
 /**
  * @imports
  */
-import * as geolib from 'geolib';
+import geolib from 'geolib';
 
 /**
  * toQueryParams

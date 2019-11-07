@@ -21,7 +21,6 @@ export default class ManeuverLabel extends Component {
         fontFamily: PropTypes.string,
         fontFamilyBold: PropTypes.string,
         fontSize: PropTypes.number,
-        fontColor: PropTypes.string
     }
 
     /**
@@ -33,7 +32,6 @@ export default class ManeuverLabel extends Component {
         fontFamily: undefined,
         fontFamilyBold: undefined,
         fontSize: 15,
-        fontColor: undefined
     }
 
     /**
@@ -85,7 +83,7 @@ export default class ManeuverLabel extends Component {
         }
 
         return (
-            <Text style={{flexWrap: 'wrap', color: 'red'}}>
+            <Text style={{flexWrap: 'wrap'}}>
                 {parts}
             </Text>
         )

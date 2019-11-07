@@ -215,7 +215,7 @@ export default class MapViewNavigation extends Component {
      */
     updatePosition(coordinate, duration = 0)
     {
-        this.props.map().animateCamera(coordinate, duration);
+        this.props.map().animateToRegion(coordinate, duration);
     }
 
     /**
@@ -379,7 +379,7 @@ export default class MapViewNavigation extends Component {
                 ...this.getBoundingBoxZoomValue(route.bounds.boundingBox, this.props.directionZoomQuantifier)
             }
 
-            this.props.map().animateCamera(region, this.props.animationDuration);
+            this.props.map().animateToRegion(region, this.props.animationDuration);
 
             if(!this.state.navigationMode == NavigationModes.ROUTE) {
                 this.setState({
@@ -407,7 +407,7 @@ export default class MapViewNavigation extends Component {
                 ...this.getZoomValue(this.props.navigationZoomLevel),
             };
 
-            this.props.map().animateCamera(region, this.props.animationDuration);
+            this.props.map().animateToRegion(region, this.props.animationDuration);
             this.props.map().animateCamera(this.props.navigationViewingAngle, this.props.animationDuration);
 
             //this.updatePosition(route.origin.coordinate);

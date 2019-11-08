@@ -53,7 +53,7 @@ export default class MapViewNavigation extends Component {
         routeStepCenterTolerance: PropTypes.number,
         routeStepCourseTolerance: PropTypes.number,
         displayDebugMarkers: PropTypes.bool,
-        simulate: PropTypes.bool
+        simulate: PropTypes.bool,
     }
 
     /**
@@ -100,6 +100,8 @@ export default class MapViewNavigation extends Component {
         this.directionsCoder = new Directions(this.props.apiKey, {
             language: this.props.language
         });
+
+        this.simulator = new Simulator(this);
 
         this.traps = new Traps(this);
 
@@ -293,10 +295,10 @@ export default class MapViewNavigation extends Component {
     {
         return this.setState({
             navigationMode: NavigationModes.IDLE,
-            stepIndex: false,
-            step: false,
             route: false,
-        });
+            step: false,
+            stepIndex: false,
+        })
     }
 
     /**
@@ -417,14 +419,10 @@ export default class MapViewNavigation extends Component {
             this.updateStep(0);
 
             this.props.onNavigationStarted && this.props.onNavigationStarted();
-            if (this.props.simulate) {
-                console.log("SIMULATING ROUTE")
-                this.simulator = new Simulator(this);
-                setTimeout(() => this.simulator.start(route), this.props.animationDuration * 1.5);
-            } else {
-                console.log("NOT SIMULATING")
-            }
 
+            if(this.props.simulate){
+                setTimeout(() => this.simulator.start(route), this.props.animationDuration * 1.5);
+            }
             return Promise.resolve(route);
         });
     }

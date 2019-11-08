@@ -53,7 +53,7 @@ export default class MapViewNavigation extends Component {
         routeStepCenterTolerance: PropTypes.number,
         routeStepCourseTolerance: PropTypes.number,
         displayDebugMarkers: PropTypes.bool,
-        simulate: PropTypes.bool,
+        simulate: PropTypes.bool
     }
 
     /**

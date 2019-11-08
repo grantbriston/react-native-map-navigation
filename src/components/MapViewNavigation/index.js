@@ -82,6 +82,7 @@ export default class MapViewNavigation extends Component {
         routeStepCenterTolerance: 0.1,
         routeStepCourseTolerance: 30, // in degress
         displayDebugMarkers: false,
+        simulate: false,
     }
 
     /**
